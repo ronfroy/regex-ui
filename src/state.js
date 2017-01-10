@@ -12,9 +12,10 @@ const State = {
             { name: 'Multi line', value: 'm', active: false }
         ],
         rules: [
-            { position: ++i, type: 'startOfLine', value: ''},
-            { position: ++i, type: 'then', value: ''},
+            { identifier: ++i, type: 'startOfLine', value: ''},
+            { identifier: ++i, type: 'then', value: ''},
         ],
+        next_identifier: ++i,
         rule_types: [
             { value: 'add', name: 'Add', valuable: true },
             { value: 'any', name: 'Any', valuable: true },

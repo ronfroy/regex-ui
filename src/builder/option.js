@@ -8,22 +8,6 @@ class Option extends React.Component {
         changeOption: React.PropTypes.func.isRequired
     }
 
-    constructor(props) {
-        super(props);
-
-        this.onChange = this.onChange.bind(this);
-
-        this.state = {
-            checked: props.checked
-        };
-    }
-
-    onChange(e) {
-        var checked = !this.state.checked;
-        this.setState({ checked: checked  });
-        this.props.changeOption(checked);
-    }
-
     render() {
         return (
             <div className="form-check form-check-inline">
@@ -32,8 +16,8 @@ class Option extends React.Component {
                         className="form-check-input"
                         type="checkbox"
                         defaultValue={ this.props.value }
-                        checked={this.state.checked}
-                        onChange={this.onChange }
+                        checked={this.props.checked}
+                        onChange={() => this.props.changeOption() }
                     />
                     { this.props.name }
                 </label>

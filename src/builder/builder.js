@@ -9,7 +9,7 @@ class Builder extends React.Component {
         rules: React.PropTypes.array.isRequired,
         addRule: React.PropTypes.func.isRequired,
         resetRules: React.PropTypes.func.isRequired
-    };
+    }
 
     render() {
         return (
@@ -22,8 +22,8 @@ class Builder extends React.Component {
 
                 { this.props.rules.map((rule) => (
                     <Rule
-                        key={rule.position}
-                        position={rule.position}
+                        key={rule.identifier}
+                        identifier={rule.identifier}
                         type={rule.type}
                         value={rule.value}
                     />

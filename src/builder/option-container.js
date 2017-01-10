@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        changeOption: (checked) => {
-            dispatch(changeOptionAction(ownProps.name, checked))
+        changeOption: () => {
+            dispatch(changeOptionAction(ownProps.name))
         }
     }
 };

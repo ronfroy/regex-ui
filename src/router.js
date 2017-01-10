@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRedirect, hashHistory} from 'react-router';
+import {Router, Route, IndexRedirect, browserHistory } from 'react-router';
 
 import Layout from './app/layout-container';
 import Builder from './builder/builder-container';
@@ -8,7 +8,7 @@ import Loader from './loader/loader-container';
 class AppRouter extends React.Component {
     render() {
         return (
-            <Router history={hashHistory}>
+            <Router history={browserHistory}>
                 <Route component={Layout} path="/">
                     <IndexRedirect to="builder" />
                     <Route component={Builder} path="builder" />

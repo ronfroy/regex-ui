@@ -11,13 +11,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         removeRule: () => {
-            dispatch(removeRuleAction(ownProps.position))
+            dispatch(removeRuleAction(ownProps.identifier))
         },
         changeType: (type)=> {
-            dispatch(changeRuleAction(ownProps.position, type, ownProps.value))
+            dispatch(changeRuleAction(ownProps.identifier, type, ownProps.value))
         },
         changeValue: (value)=> {
-            dispatch(changeRuleAction(ownProps.position, ownProps.type, value))
+            dispatch(changeRuleAction(ownProps.identifier, ownProps.type, value))
         },
     }
 };

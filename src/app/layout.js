@@ -5,7 +5,8 @@ class Layout extends React.Component {
 
     static propTypes = {
         regex: React.PropTypes.string.isRequired,
-        navigation: React.PropTypes.array.isRequired
+        navigation: React.PropTypes.array.isRequired,
+        children: React.PropTypes.object
     };
 
     render() {
