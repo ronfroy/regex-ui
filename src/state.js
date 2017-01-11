@@ -3,6 +3,7 @@ const State = {
     regex: '',
     navigation: [
         { name: 'Builder', route: 'builder' },
+        { name: 'Tester', route: 'tester' },
         { name: 'Loader', route: 'loader' },
     ],
     builder: {
@@ -15,7 +16,6 @@ const State = {
             { identifier: ++i, type: 'startOfLine', value: ''},
             { identifier: ++i, type: 'then', value: ''},
         ],
-        next_identifier: ++i,
         rule_types: [
             { value: 'add', name: 'Add', valuable: true },
             { value: 'any', name: 'Any', valuable: true },
@@ -35,6 +35,11 @@ const State = {
             { value: 'then', name: 'Then', valuable: true },
             { value: 'word', name: 'Word', valuable: false },
         ],
+        default_type: 'any',
+        next_identifier: ++i,
+    },
+    tester: {
+        tests: []
     }
 };
 

@@ -29,6 +29,9 @@ const regexBuilder = (config) => {
             case 'anything':
                 regexVE.anything();
                 break;
+            case 'anythingBut':
+                regexVE.anythingBut(rule.value);
+                break;
             case 'endOfLine':
                 regexVE.endOfLine();
                 break;
@@ -68,7 +71,7 @@ const regexBuilder = (config) => {
         }
     }
 
-    return regexVE.toString();
+    return regexVE;
 };
 
 export default regexBuilder;

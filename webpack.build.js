@@ -8,12 +8,6 @@ module.exports = {
   "cache": true,
   "entry": {
     module: path.join(__dirname, 'src', 'index.js'),
-    common: [
-      'react',
-      'react-dom',
-      'react-router',
-      'react-redux'
-    ]
   },
 
   "resolve": {
@@ -25,20 +19,25 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '',
-    filename: 'regex-builder.js',
+    filename: 'regex-ui.js',
     pathInfo: true
   },
 
   module: {
     loaders: [
-      {test: /\.js?$/, exclude: /node_modules/, loader: 'babel', query: {cacheDirectory: true, presets: ['es2015', 'stage-0', 'react']}},
-      {test: /\.json$/, loader: 'json'},
+      {
+        test: /\.js?$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          cacheDirectory: true,
+          presets: ['es2015', 'stage-0', 'react']
+        }
+      },
     ]
   },
 
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common', 'common.js')
-  ]
+  plugins: []
 };
 
 

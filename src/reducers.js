@@ -7,6 +7,8 @@ const reducers = (state = initialState, action) => {
     {
         state.builder.options = action.regex_options;
         state.builder.rules = action.regex_rules;
+        state.builder.next_identifier = action.next_identifier;
+        state.tester.tests = action.regex_tests;
     }
 
     if('REGEX_BUILDER_RESET_RULES' == action.type)
@@ -42,7 +44,7 @@ const reducers = (state = initialState, action) => {
     {
         state.builder.rules = state.builder.rules.concat([{
             identifier: ++state.builder.next_identifier,
-            type: 'any',
+            type: state.builder.default_type,
             value: ''
         }]);
     }
@@ -61,8 +63,16 @@ const reducers = (state = initialState, action) => {
         });
     }
 
+    const regex = regexBuilder(state.builder);
+
+    state.tester.tests = state.tester.tests.map(function(test) {
+        return Object.assign({}, test, {
+            'match': regex.test(test.subject)
+        });
+    });
+
     return Object.assign({}, state, {
-        'regex': regexBuilder(state.builder),
+        'regex': regex.toString(),
     });
 };
 

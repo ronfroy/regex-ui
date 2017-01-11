@@ -5,9 +5,8 @@ class Loader extends React.Component {
     render() {
         return (
             <div>
-               <ul>
-                   <li> Email validation : <button onClick={this.props.loadEmailValidation}>Load</button></li>
-               </ul>
+                <h2>Regex Loader</h2>
+                <button className="btn btn-secondary" onClick={this.props.loadUrlValidation}>Load email validation</button>
             </div>
         );
     }

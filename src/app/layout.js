@@ -11,7 +11,7 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <NavBar
                     title="Regex UI"
                     regex={this.props.regex}

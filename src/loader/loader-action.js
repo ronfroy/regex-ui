@@ -1,10 +1,10 @@
-export const loadEmailValidationRegexAction = () => {
+export const loadUrlValidationRegexAction = () => {
     var i = 0;
     return {
         type: 'REGEX_LOADER_LOAD',
         regex_options: [
-            { name: 'Global', value: 'g', active: true },
-            { name: 'Case insensitive', value: 'i', active: true },
+            { name: 'Global', value: 'g', active: false },
+            { name: 'Case insensitive', value: 'i', active: false },
             { name: 'Multi line', value: 'm', active: false }
         ],
         regex_rules: [
@@ -17,5 +17,10 @@ export const loadEmailValidationRegexAction = () => {
             { identifier: ++i, type: 'endOfLine', value: ''},
         ],
         next_identifier: ++i,
+        regex_tests: [
+            { subject: 'http://www.google.fr', match: true },
+            { subject: 'https://www.google.fr', match: true },
+            { subject: 'ftp://localhost', match: true }
+        ]
     }
 };
