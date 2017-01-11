@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        changeOption: () => {
+        onChangeOption: () => {
             dispatch(changeOptionAction(ownProps.name))
         }
     }

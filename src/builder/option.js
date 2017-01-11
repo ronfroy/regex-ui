@@ -5,7 +5,7 @@ class Option extends React.Component {
     static propTypes = {
         value: React.PropTypes.string.isRequired,
         checked: React.PropTypes.bool.isRequired,
-        changeOption: React.PropTypes.func.isRequired
+        onChangeOption: React.PropTypes.func.isRequired
     }
 
     render() {
@@ -17,7 +17,7 @@ class Option extends React.Component {
                         type="checkbox"
                         defaultValue={ this.props.value }
                         checked={this.props.checked}
-                        onChange={() => this.props.changeOption() }
+                        onChange={() => this.props.onChangeOption() }
                     />
                     { this.props.name }
                 </label>

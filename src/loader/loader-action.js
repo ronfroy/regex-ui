@@ -8,13 +8,11 @@ export const loadUrlValidationRegexAction = () => {
             { name: 'Multi line', value: 'm', active: false }
         ],
         regex_rules: [
-            { identifier: ++i, type: 'startOfLine', value: ''},
             { identifier: ++i, type: 'find', value: 'http'},
             { identifier: ++i, type: 'maybe', value: 's'},
             { identifier: ++i, type: 'find', value: '://'},
             { identifier: ++i, type: 'maybe', value: 'www.'},
-            { identifier: ++i, type: 'anything', value: ''},
-            { identifier: ++i, type: 'endOfLine', value: ''},
+            { identifier: ++i, type: 'anythingBut', value: ' '},
         ],
         regex_tests: [
             { identifier: ++i, subject: 'http://www.domain.com', must_match: true, pass: true },
@@ -37,13 +35,11 @@ export const loadEmailValidationRegexAction = () => {
             { name: 'Multi line', value: 'm', active: false }
         ],
         regex_rules: [
-            { identifier: ++i, type: 'startOfLine', value: ''},
             { identifier: ++i, type: 'range', value: '09az'},
-            { identifier: ++i, type: 'find', value: '@'},
+            { identifier: ++i, type: 'then', value: '@'},
             { identifier: ++i, type: 'range', value: '09az'},
-            { identifier: ++i, type: 'find', value: '.'},
+            { identifier: ++i, type: 'then', value: '.'},
             { identifier: ++i, type: 'range', value: 'az'},
-            { identifier: ++i, type: 'endOfLine', value: ''},
         ],
         regex_tests: [
             { identifier: ++i, subject: 'name@domain.com', must_match: true, pass: true },

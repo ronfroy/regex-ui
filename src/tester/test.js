@@ -7,8 +7,8 @@ class Test extends React.Component {
         subject: React.PropTypes.string.isRequired,
         must_match: React.PropTypes.bool.isRequired,
         pass: React.PropTypes.bool.isRequired,
-        changeSubject: React.PropTypes.func.isRequired,
-        changeMatch: React.PropTypes.func.isRequired
+        onChangeSubject: React.PropTypes.func.isRequired,
+        onChangeMatch: React.PropTypes.func.isRequired
     }
 
     render() {
@@ -19,11 +19,11 @@ class Test extends React.Component {
             <div className={divCss}>
                 <textarea className={textCss}
                           value={this.props.subject}
-                          onChange={(e) => this.props.changeSubject(e.target.value)}
+                          onChange={(e) => this.props.onChangeSubject(e.target.value)}
                 />
                 Must match: <input type="checkbox"
                        checked={this.props.must_match}
-                       onChange={(e) => this.props.changeMatch(e.target.value)}
+                       onChange={(e) => this.props.onChangeMatch(e.target.value)}
                 />
             </div>
         );

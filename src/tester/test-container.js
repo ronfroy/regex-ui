@@ -9,10 +9,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        changeSubject: (subject)=> {
+        onChangeSubject: (subject)=> {
             dispatch(changeTestAction(ownProps.identifier, subject, ownProps.must_match))
         },
-        changeMatch: ()=> {
+        onChangeMatch: ()=> {
             dispatch(changeTestAction(ownProps.identifier, ownProps.subject, !ownProps.must_match))
         },
     }

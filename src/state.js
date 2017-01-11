@@ -30,6 +30,7 @@ const State = {
             { value: 'somethingBut', name: 'Something But', valuable: true },
             { value: 'startOfLine', name: 'Start of Line', valuable: false },
             { value: 'tab', name: 'Tab', valuable: false },
+            { value: 'then', name: 'Then', valuable: true },
             { value: 'word', name: 'Word', valuable: false },
         ],
         next_identifier: ++i,
