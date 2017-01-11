@@ -3,22 +3,28 @@ import React from 'react';
 class Test extends React.Component {
 
     static propTypes = {
+        identifier: React.PropTypes.number.isRequired,
         subject: React.PropTypes.string.isRequired,
-        match: React.PropTypes.bool.isRequired,
+        must_match: React.PropTypes.bool.isRequired,
+        pass: React.PropTypes.bool.isRequired,
+        changeSubject: React.PropTypes.func.isRequired,
+        changeMatch: React.PropTypes.func.isRequired
     }
 
     render() {
-        if (this.props.match) {
-            return (
-                <div className="form-group row has-success">
-                    <textarea type="text" className="form-control form-control-success" readOnly={true} value={this.props.subject}/>
-                </div>
-            );
-        }
+        var divCss = this.props.pass ? 'form-group has-success' : 'form-group has-danger';
+        var textCss = this.props.pass ? 'form-control form-control-success' : 'form-control form-control-danger';
 
         return (
-            <div className="form-group row has-danger">
-                <textarea type="text" className="form-control form-control-danger" readOnly={true} value={this.props.subject}/>
+            <div className={divCss}>
+                <textarea className={textCss}
+                          value={this.props.subject}
+                          onChange={(e) => this.props.changeSubject(e.target.value)}
+                />
+                Must match: <input type="checkbox"
+                       checked={this.props.must_match}
+                       onChange={(e) => this.props.changeMatch(e.target.value)}
+                />
             </div>
         );
     }

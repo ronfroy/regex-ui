@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Tester from './tester';
+import {addTestAction, resetAction} from './tester-actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -9,6 +10,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        onAddTest: ()=> {
+            dispatch(addTestAction())
+        },
+        onReset: ()=> {
+            dispatch(resetAction())
+        },
     }
 };
 

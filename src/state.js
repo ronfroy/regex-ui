@@ -13,11 +13,9 @@ const State = {
             { name: 'Multi line', value: 'm', active: false }
         ],
         rules: [
-            { identifier: ++i, type: 'startOfLine', value: ''},
-            { identifier: ++i, type: 'then', value: ''},
+            { identifier: ++i, type: 'find', value: ''},
         ],
         rule_types: [
-            { value: 'add', name: 'Add', valuable: true },
             { value: 'any', name: 'Any', valuable: true },
             { value: 'anyOf', name: 'Any Of', valuable: true },
             { value: 'anything', name: 'Anything', valuable: false },
@@ -32,14 +30,14 @@ const State = {
             { value: 'somethingBut', name: 'Something But', valuable: true },
             { value: 'startOfLine', name: 'Start of Line', valuable: false },
             { value: 'tab', name: 'Tab', valuable: false },
-            { value: 'then', name: 'Then', valuable: true },
             { value: 'word', name: 'Word', valuable: false },
         ],
-        default_type: 'any',
         next_identifier: ++i,
     },
     tester: {
-        tests: []
+        tests: [
+            { identifier: ++i, subject: '', must_match: true, pass: true },
+        ]
     }
 };
 

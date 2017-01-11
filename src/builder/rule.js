@@ -30,7 +30,7 @@ class Rule extends React.Component {
         return (
             <div>
                 <div className="form-inline">
-                    <div className="form-group row">
+                    <div className="form-group">
                         <select
                             className="custom-select form-control mb-2 mr-sm-2 mb-sm-0"
                             value={this.props.type}
@@ -55,6 +55,8 @@ class Rule extends React.Component {
                             <i className="fa fa-trash" aria-hidden="true"></i> Remove
                         </button>
                     </div>
+
+                    <br/><br/>
                 </div>
             </div>
         );

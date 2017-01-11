@@ -4,8 +4,8 @@ export const addRuleAction = () => {
     }
 };
 
-export const resetRulesAction = () => {
+export const resetAction = () => {
     return {
-        type: 'REGEX_BUILDER_RESET_RULES'
+        type: 'REGEX_BUILDER_RESET'
     }
 };

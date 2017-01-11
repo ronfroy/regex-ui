@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Builder from './builder';
-import {addRuleAction, resetRulesAction} from './builder-actions';
+import {addRuleAction, resetAction} from './builder-actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -11,11 +11,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        addRule: () => {
+        onAdd: () => {
             dispatch(addRuleAction())
         },
-        resetRules: () => {
-            dispatch(resetRulesAction())
+        onReset: () => {
+            dispatch(resetAction())
         },
     }
 };

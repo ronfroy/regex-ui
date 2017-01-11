@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Loader from './loader';
-import {loadUrlValidationRegexAction} from  './loader-action'
+import {loadUrlValidationRegexAction, loadEmailValidationRegexAction} from  './loader-action'
 
 const mapStateToProps = (state) => {
     return {
@@ -11,8 +11,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        loadUrlValidation: () => {
+        onLoadUrlValidation: () => {
             dispatch(loadUrlValidationRegexAction());
+        },
+        onLoadEmailValidation: () => {
+            dispatch(loadEmailValidationRegexAction());
         },
     }
 };

@@ -48,7 +48,13 @@ const regexBuilder = (config) => {
                 regexVE.or(rule.value);
                 break;
             case 'range':
-                regexVE.range(rule.value);
+                if(rule.value.length > 0) {
+                    var range = rule.value.split('');
+                    if(!(range.length % 2 === 0)) {
+                        range = range.concat(range.slice(-1));
+                    }
+                    regexVE.range.apply(regexVE, range);
+                }
                 break;
             case 'something':
                 regexVE.something();

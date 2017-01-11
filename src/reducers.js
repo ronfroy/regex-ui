@@ -11,7 +11,7 @@ const reducers = (state = initialState, action) => {
         state.tester.tests = action.regex_tests;
     }
 
-    if('REGEX_BUILDER_RESET_RULES' == action.type)
+    if('REGEX_BUILDER_RESET' == action.type)
     {
         state.builder.options = state.builder.options.map(function(option) {
             return Object.assign({}, option, { 'active': false });
@@ -44,7 +44,7 @@ const reducers = (state = initialState, action) => {
     {
         state.builder.rules = state.builder.rules.concat([{
             identifier: ++state.builder.next_identifier,
-            type: state.builder.default_type,
+            type: 'find',
             value: ''
         }]);
     }
@@ -63,11 +63,39 @@ const reducers = (state = initialState, action) => {
         });
     }
 
+    if('REGEX_TESTER_RESET' == action.type)
+    {
+        state.tester.tests = [];
+    }
+
+    if('REGEX_TESTER_ADD_TEST' == action.type)
+    {
+        state.tester.tests = state.tester.tests.concat([{
+            identifier: ++state.builder.next_identifier,
+            subject: '',
+            must_match: true
+        }]);
+    }
+
+    if('REGEX_TESTER_CHANGE_TEST' == action.type)
+    {
+        state.tester.tests = state.tester.tests.map(function(test) {
+            if(test.identifier === action.test_identifier) {
+                return Object.assign({}, test, {
+                    'subject': action.test_subject,
+                    'must_match': action.test_must_match
+                });
+            }
+
+            return test;
+        });
+    }
+
     const regex = regexBuilder(state.builder);
 
     state.tester.tests = state.tester.tests.map(function(test) {
         return Object.assign({}, test, {
-            'match': regex.test(test.subject)
+            'pass': test.must_match === regex.test(test.subject)
         });
     });
 

@@ -6,7 +6,12 @@ class Loader extends React.Component {
         return (
             <div>
                 <h2>Regex Loader</h2>
-                <button className="btn btn-secondary" onClick={this.props.loadUrlValidation}>Load email validation</button>
+                <button className="btn btn-primary mb-2 mr-sm-2 mb-sm-0" onClick={this.props.onLoadUrlValidation}>
+                    Load URL validation
+                </button>
+                <button className="btn btn-primary mb-2 mr-sm-2 mb-sm-0" onClick={this.props.onLoadEmailValidation}>
+                    Load Email validation
+                </button>
             </div>
         );
     }
