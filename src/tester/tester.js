@@ -14,6 +14,14 @@ class Tester extends React.Component {
             <div>
                 <h2>Regex Tester</h2>
 
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                 { this.props.tests.map((test) => (
                     <Test key={test.identifier}
                           identifier={test.identifier}
@@ -22,6 +30,8 @@ class Tester extends React.Component {
                           pass={test.pass}
                     />
                 ))}
+                    </tbody>
+                </table>
 
                 <button
                     className="btn btn-primary mb-2 mr-sm-2 mb-sm-0"

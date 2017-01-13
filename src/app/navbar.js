@@ -26,12 +26,6 @@ class NavBar extends React.Component {
 
                 <h1 className="navbar-brand">{this.props.title}</h1>
 
-                <input className="form-control"
-                       type="text"
-                       readOnly={true}
-                       value={this.props.regex}
-                />
-
                 <div id="navbarNavDropdown" className="collapse navbar-collapse">
                     <ul className="navbar-nav">
                         { this.props.navigation.map((link) => (
@@ -39,6 +33,12 @@ class NavBar extends React.Component {
                         ))}
                     </ul>
                 </div>
+
+                <input className="form-control"
+                       type="text"
+                       readOnly={true}
+                       value={this.props.regex}
+                />
             </nav>
         );
     }

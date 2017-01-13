@@ -10,14 +10,58 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onRemoveRule: () => {
+        onRemove: () => {
             dispatch(removeRuleAction(ownProps.identifier))
         },
         onChangeType: (type)=> {
-            dispatch(changeRuleAction(ownProps.identifier, type, ownProps.value))
+            dispatch(changeRuleAction(
+                ownProps.identifier,
+                type,
+                ownProps.value,
+                ownProps.repeat,
+                ownProps.repeat_min,
+                ownProps.repeat_max
+            ))
         },
         onChangeValue: (value)=> {
-            dispatch(changeRuleAction(ownProps.identifier, ownProps.type, value))
+            dispatch(changeRuleAction(
+                ownProps.identifier,
+                ownProps.type,
+                value,
+                ownProps.repeat,
+                ownProps.repeat_min,
+                ownProps.repeat_max
+            ))
+        },
+        onChangeRepeat: ()=> {
+            dispatch(changeRuleAction(
+                ownProps.identifier,
+                ownProps.type,
+                ownProps.value,
+                !ownProps.repeat,
+                ownProps.repeat_min,
+                ownProps.repeat_max
+            ))
+        },
+        onChangeRepeatMin: (repeatMin)=> {
+            dispatch(changeRuleAction(
+                ownProps.identifier,
+                ownProps.type,
+                ownProps.value,
+                ownProps.repeat,
+                repeatMin,
+                ownProps.repeat_max
+            ))
+        },
+        onChangeRepeatMax: (repeatMax)=> {
+            dispatch(changeRuleAction(
+                ownProps.identifier,
+                ownProps.type,
+                ownProps.value,
+                ownProps.repeat,
+                ownProps.repeat_min,
+                repeatMax
+            ))
         },
     }
 };

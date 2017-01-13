@@ -33,6 +33,7 @@ const reducers = (state = initialState, action) => {
         });
     }
 
+
     if('REGEX_BUILDER_REMOVE_RULE' == action.type)
     {
         state.builder.rules = state.builder.rules.filter(function(rule) {
@@ -45,7 +46,10 @@ const reducers = (state = initialState, action) => {
         state.builder.rules = state.builder.rules.concat([{
             identifier: ++state.builder.next_identifier,
             type: 'find',
-            value: ''
+            value: '',
+            repeat: false,
+            repeat_min: '',
+            repeat_max: ''
         }]);
     }
 
@@ -55,7 +59,10 @@ const reducers = (state = initialState, action) => {
             if(rule.identifier === action.rule_identifier) {
                 return Object.assign({}, rule, {
                     'type': action.rule_type,
-                    'value': action.rule_value
+                    'value': action.rule_value,
+                    'repeat': action.rule_repeat,
+                    'repeat_min': action.rule_repeat_min,
+                    'repeat_max': action.rule_repeat_max
                 });
             }
 
@@ -66,6 +73,13 @@ const reducers = (state = initialState, action) => {
     if('REGEX_TESTER_RESET' == action.type)
     {
         state.tester.tests = [];
+    }
+
+    if('REGEX_TESTER_REMOVE_TEST' == action.type)
+    {
+        state.tester.tests = state.tester.tests.filter(function(test) {
+            return test.identifier !== action.test_identifier;
+        });
     }
 
     if('REGEX_TESTER_ADD_TEST' == action.type)

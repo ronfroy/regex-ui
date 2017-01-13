@@ -20,14 +20,31 @@ class Builder extends React.Component {
                     <Option key={option.name} name={option.name} value={option.value} checked={option.active}/>
                 ))}
 
-                { this.props.rules.map((rule) => (
-                    <Rule
-                        key={rule.identifier}
-                        identifier={rule.identifier}
-                        type={rule.type}
-                        value={rule.value}
-                    />
-                ))}
+                <table className="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Repeat</th>
+                        <th>Min</th>
+                        <th>Max</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        { this.props.rules.map((rule) => (
+                            <Rule
+                                key={rule.identifier}
+                                identifier={rule.identifier}
+                                type={rule.type}
+                                value={rule.value}
+                                repeat={rule.repeat}
+                                repeat_min={rule.repeat_min}
+                                repeat_max={rule.repeat_max}
+                            />
+                        ))}
+                    </tbody>
+                </table>
                 <br/>
                 <button
                     className="btn btn-primary mb-2 mr-sm-2 mb-sm-0"

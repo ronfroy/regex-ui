@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Test from './test';
-import {changeTestAction} from './test-actions';
+import {changeTestAction, removeTestAction} from './test-actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -9,6 +9,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        onRemove: () => {
+            dispatch(removeTestAction(ownProps.identifier))
+        },
         onChangeSubject: (subject)=> {
             dispatch(changeTestAction(ownProps.identifier, subject, ownProps.must_match))
         },

@@ -75,6 +75,26 @@ const regexBuilder = (config) => {
                 regexVE.word();
                 break;
         }
+
+        if(rule.value && rule.repeat) {
+            var min = Math.floor(Number(rule.repeat_min));
+            var max = Math.floor(Number(rule.repeat_max));
+
+            if(min >= 0 && max >= 0) {
+                if(max > min) {
+                    regexVE.repeatPrevious(min, max);
+                }
+            }
+            else if(max >= 0) {
+                regexVE.repeatPrevious(max, max);
+            }
+            else if(min >= 0) {
+                regexVE.repeatPrevious(min, min);
+            }
+            else {
+                regexVE.oneOrMore();
+            }
+        }
     }
 
     return regexVE;

@@ -1,3 +1,9 @@
+export const removeTestAction = (identifier) => {
+    return {
+        type: 'REGEX_TESTER_REMOVE_TEST',
+        test_identifier: identifier
+    }
+};
 export const changeTestAction = (identifier, subject, must_match) => {
     return {
         type: 'REGEX_TESTER_CHANGE_TEST',
