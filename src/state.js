@@ -21,6 +21,7 @@ const State = {
             { value: 'anything', name: 'Anything', valuable: false, repeatable: true },
             { value: 'anythingBut', name: 'Anything But', valuable: true, repeatable: false },
             { value: 'endOfLine', name: 'End of Line', valuable: false, repeatable: false },
+            { value: 'digit', name: 'Digit', valuable: false,repeatable: true },
             { value: 'find', name: 'Find', valuable: true, repeatable: true },
             { value: 'lineBreak', name: 'Line Break', valuable: false, repeatable: false },
             { value: 'maybe', name: 'Maybe', valuable: true, repeatable: false },
@@ -31,7 +32,7 @@ const State = {
             { value: 'startOfLine', name: 'Start of Line', valuable: false,repeatable: false },
             { value: 'tab', name: 'Tab', valuable: false, repeatable: false },
             { value: 'then', name: 'Then', valuable: true,repeatable: true },
-            { value: 'word', name: 'Word', valuable: false,repeatable: false },
+            { value: 'word', name: 'Word', valuable: false,repeatable: true }
         ],
         next_identifier: ++i,
     },

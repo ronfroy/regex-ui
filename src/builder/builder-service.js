@@ -74,27 +74,36 @@ const regexBuilder = (config) => {
             case 'word':
                 regexVE.word();
                 break;
+            case 'digit':
+                regexVE.digit();
+                break;
         }
 
         if(rule.value && rule.repeat) {
-            var min = Math.floor(Number(rule.repeat_min));
-            var max = Math.floor(Number(rule.repeat_max));
+            var minString = rule.repeat_min.replace(/\D/,'');
+            var maxString = rule.repeat_max.replace(/\D/,'');
+            var min = Number(minString);
+            var max = Number(maxString);
 
-            if(min >= 0 && max >= 0) {
+            if('' !== minString && '' !== maxString) {
                 if(max > min) {
                     regexVE.repeatPrevious(min, max);
                 }
             }
-            else if(max >= 0) {
+            else if('' !== maxString) {
                 regexVE.repeatPrevious(max, max);
             }
-            else if(min >= 0) {
+            else if('' !== minString) {
                 regexVE.repeatPrevious(min, min);
             }
             else {
                 regexVE.oneOrMore();
             }
         }
+
+
+        //regexVE.beginCapture();
+        //regexVE.endCapture();
     }
 
     return regexVE;

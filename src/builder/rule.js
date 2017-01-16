@@ -45,7 +45,7 @@ class Rule extends React.Component {
 
     render() {
         const valuable = this.isValuable(this.props.type);
-        const repeatable = this.isRepeatable(this.props.type);
+        const repeatable = this.isRepeatable(this.props.type) && '' !== this.props.value;
         const limitable = repeatable && this.props.repeat;
         return (
             <tr scope="row">
@@ -65,8 +65,9 @@ class Rule extends React.Component {
                     <input
                         type="text"
                         className="form-control mb-3 mr-sm-3 mb-sm-0"
-                        defaultValue={this.props.value}
+                        value={this.props.value}
                         onKeyUp={(e) =>{ this.props.onChangeValue(e.target.value) }}
+                        onChange={(e) =>{ this.props.onChangeValue(e.target.value) }}
                     />
                     ) : '' }
                 </td>
@@ -87,8 +88,9 @@ class Rule extends React.Component {
                             type="text"
                             className="form-control mb-3 mr-sm-3 mb-sm-0"
                             size="1"
-                            defaultValue={this.props.repeat_min}
+                            value={this.props.repeat_min}
                             onKeyUp={(e) =>{ this.props.onChangeRepeatMin(e.target.value) }}
+                            onChange={(e) =>{ this.props.onChangeRepeatMin(e.target.value) }}
                         />
                     ) : '' }
                 </td>
@@ -98,8 +100,9 @@ class Rule extends React.Component {
                         type="text"
                         className="form-control mb-3 mr-sm-3 mb-sm-0"
                         size="1"
-                        defaultValue={this.props.repeat_max}
+                        value={this.props.repeat_max}
                         onKeyUp={(e) =>{ this.props.onChangeRepeatMax(e.target.value) }}
+                        onChange={(e) =>{ this.props.onChangeRepeatMax(e.target.value) }}
                     />
                     ) : '' }
                 </td>

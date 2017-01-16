@@ -45,7 +45,6 @@ class Builder extends React.Component {
                         ))}
                     </tbody>
                 </table>
-                <br/>
                 <button
                     className="btn btn-primary mb-2 mr-sm-2 mb-sm-0"
                     onClick={ this.props.onAdd }

@@ -61,8 +61,8 @@ const reducers = (state = initialState, action) => {
                     'type': action.rule_type,
                     'value': action.rule_value,
                     'repeat': action.rule_repeat,
-                    'repeat_min': action.rule_repeat_min,
-                    'repeat_max': action.rule_repeat_max
+                    'repeat_min': action.rule_repeat_min.replace(/\D/,''),
+                    'repeat_max': action.rule_repeat_max.replace(/\D/,'')
                 });
             }
 
