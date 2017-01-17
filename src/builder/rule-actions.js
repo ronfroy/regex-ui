@@ -5,13 +5,12 @@ export const removeRuleAction = (identifier) => {
     }
 };
 
-export const changeRuleAction = (identifier, type, value, repeat, min, max) => {
+export const changeRuleAction = (identifier, type, value, min, max) => {
     return {
         type: 'REGEX_BUILDER_CHANGE_RULE',
         rule_identifier: identifier,
         rule_type: type,
         rule_value: value,
-        rule_repeat: repeat,
         rule_repeat_min: min,
         rule_repeat_max: max
     }

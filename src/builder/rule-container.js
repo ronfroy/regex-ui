@@ -17,10 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(changeRuleAction(
                 ownProps.identifier,
                 type,
-                ownProps.value,
-                ownProps.repeat,
-                ownProps.repeat_min,
-                ownProps.repeat_max
+                '',
+                '',
+                ''
             ))
         },
         onChangeValue: (value)=> {
@@ -28,17 +27,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 ownProps.identifier,
                 ownProps.type,
                 value,
-                ownProps.repeat,
-                ownProps.repeat_min,
-                ownProps.repeat_max
-            ))
-        },
-        onChangeRepeat: ()=> {
-            dispatch(changeRuleAction(
-                ownProps.identifier,
-                ownProps.type,
-                ownProps.value,
-                !ownProps.repeat,
                 ownProps.repeat_min,
                 ownProps.repeat_max
             ))
@@ -48,7 +36,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 ownProps.identifier,
                 ownProps.type,
                 ownProps.value,
-                ownProps.repeat,
                 repeatMin,
                 ownProps.repeat_max
             ))
@@ -58,7 +45,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 ownProps.identifier,
                 ownProps.type,
                 ownProps.value,
-                ownProps.repeat,
                 ownProps.repeat_min,
                 repeatMax
             ))

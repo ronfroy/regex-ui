@@ -47,7 +47,6 @@ const reducers = (state = initialState, action) => {
             identifier: ++state.builder.next_identifier,
             type: 'find',
             value: '',
-            repeat: false,
             repeat_min: '',
             repeat_max: ''
         }]);
@@ -56,13 +55,15 @@ const reducers = (state = initialState, action) => {
     if('REGEX_BUILDER_CHANGE_RULE' == action.type)
     {
         state.builder.rules = state.builder.rules.map(function(rule) {
+            var repeat_min = action.rule_repeat_min.replace(/\D/,'');
+            var repeat_max = action.rule_repeat_max.replace(/\D/,'');
+
             if(rule.identifier === action.rule_identifier) {
                 return Object.assign({}, rule, {
                     'type': action.rule_type,
                     'value': action.rule_value,
-                    'repeat': action.rule_repeat,
-                    'repeat_min': action.rule_repeat_min.replace(/\D/,''),
-                    'repeat_max': action.rule_repeat_max.replace(/\D/,'')
+                    'repeat_min': repeat_min,
+                    'repeat_max': repeat_max
                 });
             }
 

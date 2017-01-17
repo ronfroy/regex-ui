@@ -7,12 +7,10 @@ class Rule extends React.Component {
         type: React.PropTypes.string.isRequired,
         value: React.PropTypes.string.isRequired,
         types: React.PropTypes.array.isRequired,
-        repeat: React.PropTypes.bool.isRequired,
         repeat_min: React.PropTypes.string.isRequired,
         repeat_max:React.PropTypes.string.isRequired,
         onChangeType: React.PropTypes.func.isRequired,
         onChangeValue: React.PropTypes.func.isRequired,
-        onChangeRepeat: React.PropTypes.func.isRequired,
         onChangeRepeatMin: React.PropTypes.func.isRequired,
         onChangeRepeatMax: React.PropTypes.func.isRequired,
         onRemove: React.PropTypes.func.isRequired
@@ -45,12 +43,11 @@ class Rule extends React.Component {
 
     render() {
         const valuable = this.isValuable(this.props.type);
-        const repeatable = this.isRepeatable(this.props.type) && '' !== this.props.value;
-        const limitable = repeatable && this.props.repeat;
+        const repeatable = this.isRepeatable(this.props.type);
         return (
             <tr scope="row">
                 <td>
-                    <select
+                     <select
                         className="custom-select form-control mb-2 mr-sm-2 mb-sm-0"
                         value={this.props.type}
                         onChange={(e) => { this.props.onChangeType(e.target.value) } }
@@ -73,34 +70,23 @@ class Rule extends React.Component {
                 </td>
                 <td>
                     { repeatable ? (
-                    <input
-                        type="checkbox"
-                        className="form-control mb-3 mr-sm-3 mb-sm-0"
-                        size="1"
-                        checked={this.props.repeat}
-                        onChange={() =>{ this.props.onChangeRepeat() }}
-                    />
-                    ) : '' }
-                </td>
-                <td>
-                    { repeatable && limitable ? (
                         <input
                             type="text"
                             className="form-control mb-3 mr-sm-3 mb-sm-0"
                             size="1"
-                            value={this.props.repeat_min}
+                            value={this.props.repeat_min ? this.props.repeat_min : '*'}
                             onKeyUp={(e) =>{ this.props.onChangeRepeatMin(e.target.value) }}
                             onChange={(e) =>{ this.props.onChangeRepeatMin(e.target.value) }}
                         />
                     ) : '' }
                 </td>
                 <td>
-                    { repeatable && limitable ? (
+                    { repeatable ? (
                     <input
                         type="text"
                         className="form-control mb-3 mr-sm-3 mb-sm-0"
                         size="1"
-                        value={this.props.repeat_max}
+                        value={this.props.repeat_max ? this.props.repeat_max : '*'}
                         onKeyUp={(e) =>{ this.props.onChangeRepeatMax(e.target.value) }}
                         onChange={(e) =>{ this.props.onChangeRepeatMax(e.target.value) }}
                     />

@@ -25,7 +25,6 @@ class Builder extends React.Component {
                     <tr>
                         <th>Type</th>
                         <th>Value</th>
-                        <th>Repeat</th>
                         <th>Min</th>
                         <th>Max</th>
                         <th>Actions</th>
@@ -38,7 +37,6 @@ class Builder extends React.Component {
                                 identifier={rule.identifier}
                                 type={rule.type}
                                 value={rule.value}
-                                repeat={rule.repeat}
                                 repeat_min={rule.repeat_min}
                                 repeat_max={rule.repeat_max}
                             />

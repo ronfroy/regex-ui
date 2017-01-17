@@ -3,18 +3,21 @@ export const loadUrlValidationRegexAction = () => {
     return {
         type: 'REGEX_LOADER_LOAD',
         regex_options: [
+            { name: 'Start of line', value: 'sol', active: true },
+            { name: 'End of line', value: 'eol', active: true },
             { name: 'Global', value: 'g', active: false },
             { name: 'Case insensitive', value: 'i', active: false },
             { name: 'Multi line', value: 'm', active: false }
         ],
         regex_rules: [
-            { identifier: ++i, type: 'find', value: 'http', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'maybe', value: 's', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'find', value: '://', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'maybe', value: 'www.', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'range', value: '09az', repeat: true, repeat_min: '1', repeat_max: '99'},
-            { identifier: ++i, type: 'find', value: '.', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'range', value: '09az', repeat: true, repeat_min: '2', repeat_max: '6'},
+            { identifier: ++i, type: 'find', value: 'http', repeat_min: '1', repeat_max: '1'},
+            { identifier: ++i, type: 'find', value: 's', repeat_min: '0', repeat_max: '1'},
+            { identifier: ++i, type: 'find', value: '://', repeat_min: '1', repeat_max: '1'},
+            { identifier: ++i, type: 'find', value: 'www', repeat_min: '0', repeat_max: '1'},
+            { identifier: ++i, type: 'find', value: '.', repeat_min: '0', repeat_max: '1'},
+            { identifier: ++i, type: 'any', value: '0-9a-z', repeat_min: '1', repeat_max: '99'},
+            { identifier: ++i, type: 'find', value: '.', repeat_min: '1', repeat_max: '1'},
+            { identifier: ++i, type: 'any', value: '0-9a-z', repeat_min: '2', repeat_max: '6'},
         ],
         regex_tests: [
             { identifier: ++i, subject: 'http://www.domain.com', must_match: true },
@@ -32,16 +35,18 @@ export const loadEmailValidationRegexAction = () => {
     return {
         type: 'REGEX_LOADER_LOAD',
         regex_options: [
+            { name: 'Start of line', value: 'sol', active: true },
+            { name: 'End of line', value: 'eol', active: true },
             { name: 'Global', value: 'g', active: false },
             { name: 'Case insensitive', value: 'i', active: false },
             { name: 'Multi line', value: 'm', active: false }
         ],
         regex_rules: [
-            { identifier: ++i, type: 'range', value: '09az', repeat: true, repeat_min: '2', repeat_max: '80'},
-            { identifier: ++i, type: 'any', value: '@', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'range', value: '09az', repeat: true, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'any', value: '.', repeat: false, repeat_min: '', repeat_max: ''},
-            { identifier: ++i, type: 'range', value: 'az', repeat: true, repeat_min: '2', repeat_max: '4'},
+            { identifier: ++i, type: 'word', value: '09az', repeat_min: '2', repeat_max: '80'},
+            { identifier: ++i, type: 'find', value: '@', repeat_min: '', repeat_max: ''},
+            { identifier: ++i, type: 'any', value: '0-9a-z', repeat_min: '2', repeat_max: '80'},
+            { identifier: ++i, type: 'find', value: '.', repeat_min: '', repeat_max: ''},
+            { identifier: ++i, type: 'any', value: 'a-z', repeat_min: '2', repeat_max: '4'},
         ],
         regex_tests: [
             { identifier: ++i, subject: 'name@domain.com', must_match: true },

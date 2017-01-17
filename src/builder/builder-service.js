@@ -1,109 +1,114 @@
 var VerEx = require('verbal-expressions');
 
-const regexBuilder = (config) => {
-    var regexVE = VerEx();
-
-    for (var i = 0, len = config.options.length; i < len; i++) {
-        var option = config.options[i];
+const optionBuilder = (regexVE, options) => {
+    for (var i = 0, len = options.length; i < len; i++) {
+        var option = options[i];
 
         if(option.active) {
+
+            if('sol' === option.value) {
+                regexVE.startOfLine();
+                continue;
+            }
+
+            if('eol' === option.value) {
+                regexVE.endOfLine();
+                continue;
+            }
+
             regexVE.addModifier(option.value);
         } else {
-            regexVE.removeModifier(option.value);
+            regexVE.removeModifier(option.value); // must remove default modifier
         }
     }
 
-    for (var j = 0, len = config.rules.length; j < len; j++) {
-        var rule = config.rules[j];
+    return regexVE;
+};
+
+const repeatBuilder = (regexVE, rule) => {
+    var minString = rule.repeat_min.replace(/\D/,'');
+    var maxString = rule.repeat_max.replace(/\D/,'');
+    var min = Number(minString);
+    var max = Number(maxString);
+
+    if('' !== minString && '' !== maxString) {
+        if(1 === min && max === min) {
+            return regexVE;
+        }
+
+        if(max > min) {
+            return regexVE.add( '{' + min + ',' + max + '}');
+        }
+
+        if(max = min) {
+            return regexVE.add( '{' + max + '}');
+        }
+    }
+
+    if('' === maxString && '' === minString) {
+        return regexVE.add('*');
+    }
+
+    if('' !== maxString) {
+        return regexVE.add( '{,' + max + '}');
+    }
+
+    if('' !== minString) {
+        switch(min) {
+            case 0:
+                return regexVE.add('*');
+            case 1:
+                return regexVE.add('+');
+            default:
+                return regexVE.add('{' + min + ',}');
+        }
+    }
+};
+
+const regexBuilder = (config) => {
+    var regexVE = VerEx();
+
+    regexVE = optionBuilder(regexVE, config.options);
+
+    for (var i = 0, len = config.rules.length; i < len; i++) {
+        var rule = config.rules[i];
+
+        if('0' === rule.repeat_min && '0' === rule.repeat_max) {
+            // ignore rule if repeat 0-0
+            continue;
+        }
 
         switch(rule.type) {
-            case 'add':
-                regexVE.add(rule.value);
-                break;
             case 'any':
-                regexVE.any(rule.value);
-                break;
-            case 'anyOf':
-                regexVE.anyOf(rule.value);
+                regexVE.add('[' + regexVE.sanitize(rule.value) + ']');
                 break;
             case 'anything':
-                regexVE.anything();
+                regexVE.add('.');
                 break;
             case 'anythingBut':
-                regexVE.anythingBut(rule.value);
-                break;
-            case 'endOfLine':
-                regexVE.endOfLine();
-                break;
-            case 'find':
-                regexVE.find(rule.value);
-                break;
-            case 'lineBreak':
-                regexVE.lineBreak();
-                break;
-            case 'maybe':
-                regexVE.maybe(rule.value);
-                break;
-            case 'or':
-                regexVE.or(rule.value);
-                break;
-            case 'range':
-                if(rule.value.length > 0) {
-                    var range = rule.value.split('');
-                    if(!(range.length % 2 === 0)) {
-                        range = range.concat(range.slice(-1));
-                    }
-                    regexVE.range.apply(regexVE, range);
-                }
-                break;
-            case 'something':
-                regexVE.something();
+                regexVE.add('([^' + regexVE.sanitize(rule.value) + ']*)');
                 break;
             case 'somethingBut':
-                regexVE.somethingBut(rule.value);
+                regexVE.add('([^' + regexVE.sanitize(rule.value) + ']+)');
                 break;
-            case 'startOfLine':
-                regexVE.startOfLine();
+            case 'find':
+                regexVE.add('(' + regexVE.sanitize(rule.value) + ')');
+                break;
+            case 'lineBreak':
+                regexVE.add('(\\r\\n|\\r|\\n)');
                 break;
             case 'tab':
-                regexVE.tab();
-                break;
-            case 'then':
-                regexVE.then(rule.value);
+                regexVE.add('\\t');
                 break;
             case 'word':
-                regexVE.word();
+                regexVE.add('\\w');
                 break;
             case 'digit':
-                regexVE.digit();
+                regexVE.add('\\d');
                 break;
         }
 
-        if(rule.value && rule.repeat) {
-            var minString = rule.repeat_min.replace(/\D/,'');
-            var maxString = rule.repeat_max.replace(/\D/,'');
-            var min = Number(minString);
-            var max = Number(maxString);
-
-            if('' !== minString && '' !== maxString) {
-                if(max > min) {
-                    regexVE.repeatPrevious(min, max);
-                }
-            }
-            else if('' !== maxString) {
-                regexVE.repeatPrevious(max, max);
-            }
-            else if('' !== minString) {
-                regexVE.repeatPrevious(min, min);
-            }
-            else {
-                regexVE.oneOrMore();
-            }
-        }
-
-
-        //regexVE.beginCapture();
-        //regexVE.endCapture();
+        regexVE = repeatBuilder(regexVE, rule);
     }
 
     return regexVE;
