@@ -1,11 +1,14 @@
 Tests
 ========
+
 Command line:
+
 ```
 $> npm run-script test 
 ```
 
 Continuous integration:
+
 [![Build Status](https://travis-ci.org/ronfroy/regex-ui.svg?branch=master)](https://travis-ci.org/ronfroy/regex-ui)
 
 TODO
