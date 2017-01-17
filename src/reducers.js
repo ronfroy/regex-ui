@@ -7,8 +7,11 @@ const reducers = (state = initialState, action) => {
     {
         state.builder.options = action.regex_options;
         state.builder.rules = action.regex_rules;
-        state.builder.next_identifier = action.next_identifier;
         state.tester.tests = action.regex_tests;
+
+        state = Object.assign({}, state, {
+            'next_identifier': ++state.next_identifier
+        });
     }
 
     if('REGEX_BUILDER_RESET' == action.type)
@@ -44,7 +47,7 @@ const reducers = (state = initialState, action) => {
     if('REGEX_BUILDER_ADD_RULE' == action.type)
     {
         state.builder.rules = state.builder.rules.concat([{
-            identifier: ++state.builder.next_identifier,
+            identifier: ++state.next_identifier,
             type: 'find',
             value: '',
             repeat_min: '',
@@ -86,7 +89,7 @@ const reducers = (state = initialState, action) => {
     if('REGEX_TESTER_ADD_TEST' == action.type)
     {
         state.tester.tests = state.tester.tests.concat([{
-            identifier: ++state.builder.next_identifier,
+            identifier: ++state.next_identifier,
             subject: '',
             must_match: true
         }]);

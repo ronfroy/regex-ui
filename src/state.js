@@ -19,24 +19,24 @@ const State = {
             { identifier: ++i, type: 'find', value: '', repeat_min: '', repeat_max: ''},
         ],
         rule_types: [
-            { value: 'find', name: 'Find', valuable: true, repeatable: true },
-            { value: 'any', name: 'Any Of', valuable: true, repeatable: true },
+            { value: 'any', name: 'Any of', valuable: true, repeatable: true },
             { value: 'anything', name: 'Anything', valuable: false, repeatable: true },
-            { value: 'anythingBut', name: 'Anything But', valuable: true, repeatable: true },
-            { value: 'somethingBut', name: 'Something But', valuable: true, repeatable: true },
-           // { value: 'or', name: 'Or', valuable: false, repeatable: false },
-            { value: 'word', name: 'Word', valuable: false, repeatable: true },
-            { value: 'digit', name: 'Digit', valuable: false,repeatable: true },
-            { value: 'lineBreak', name: 'Line Break', valuable: false, repeatable: true },
-            { value: 'tab', name: 'Tab', valuable: false, repeatable: true },
+            { value: 'anythingBut', name: 'Anything but', valuable: true, repeatable: true },
+            { value: 'somethingBut', name: 'Something but', valuable: true, repeatable: true },
+            { value: 'find', name: 'Find', valuable: true, repeatable: true },
+            { value: 'word', name: 'Find - Word', valuable: false, repeatable: true },
+            { value: 'digit', name: 'Find - Digit', valuable: false,repeatable: true },
+            { value: 'lineBreak', name: 'Find - Line break', valuable: false, repeatable: true },
+            { value: 'carriageReturn', name: 'Find - Carriage return', valuable: false, repeatable: true },
+            { value: 'tab', name: 'Find - Tab', valuable: false, repeatable: true },
         ],
-        next_identifier: ++i,
     },
     tester: {
         tests: [
             { identifier: ++i, subject: '', must_match: true, pass: true },
         ]
-    }
+    },
+    next_identifier: ++i,
 };
 
 export default State;

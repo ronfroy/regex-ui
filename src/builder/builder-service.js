@@ -31,7 +31,12 @@ const repeatBuilder = (regexVE, rule) => {
     var min = Number(minString);
     var max = Number(maxString);
 
+    // limit max and min
     if('' !== minString && '' !== maxString) {
+        if(0 === min && 1 === max) {
+            return regexVE.add('?');
+        }
+
         if(1 === min && max === min) {
             return regexVE;
         }
@@ -40,20 +45,25 @@ const repeatBuilder = (regexVE, rule) => {
             return regexVE.add( '{' + min + ',' + max + '}');
         }
 
-        if(max = min) {
-            return regexVE.add( '{' + max + '}');
-        }
+        return regexVE.add( '{' + max + '}');
     }
 
-    if('' === maxString && '' === minString) {
+    // no limit
+    if('' === minString && '' === maxString) {
         return regexVE.add('*');
     }
 
-    if('' !== maxString) {
-        return regexVE.add( '{,' + max + '}');
+    // max limit
+    if('' === minString && '' !== maxString) {
+        if(1 === max) {
+            return regexVE.add('?');
+        }
+
+        return regexVE.add( '{0,' + max + '}');
     }
 
-    if('' !== minString) {
+    // min limit
+    if('' === maxString && '' !== minString) {
         switch(min) {
             case 0:
                 return regexVE.add('*');
@@ -94,8 +104,11 @@ const regexBuilder = (config) => {
             case 'find':
                 regexVE.add('(' + regexVE.sanitize(rule.value) + ')');
                 break;
+            case 'carriageReturn':
+                regexVE.add('\\r');
+                break;
             case 'lineBreak':
-                regexVE.add('(\\r\\n|\\r|\\n)');
+                regexVE.add('\\n');
                 break;
             case 'tab':
                 regexVE.add('\\t');

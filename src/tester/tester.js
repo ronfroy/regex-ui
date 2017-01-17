@@ -13,7 +13,6 @@ class Tester extends React.Component {
         return (
             <div>
                 <h2>Regex Tester</h2>
-
                 <table className="table">
                     <thead>
                     <tr>

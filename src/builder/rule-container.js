@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(changeRuleAction(
                 ownProps.identifier,
                 type,
-                '',
-                '',
-                ''
+                ownProps.value,
+                ownProps.repeat_min,
+                ownProps.repeat_max
             ))
         },
         onChangeValue: (value)=> {
