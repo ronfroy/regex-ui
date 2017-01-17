@@ -11,7 +11,7 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-toggleable-md  navbar-inverse bg-inverse">
+            <nav className="navbar navbar-inverse bg-primary navbar-toggleable-md">
 
                 <button className="navbar-toggler navbar-toggler-right"
                         type="button"

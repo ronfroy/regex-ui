@@ -12,7 +12,8 @@ const State = {
             { name: 'End of line', value: 'eol', active: true },
             { name: 'Global', value: 'g', active: false },
             { name: 'Case insensitive', value: 'i', active: false },
-            { name: 'Multi line', value: 'm', active: false }
+            { name: 'Multi line', value: 'm', active: false },
+            { name: 'Unicode', value: 'u', active: false }
         ],
         rules: [
             { identifier: ++i, type: 'find', value: '', repeat_min: '', repeat_max: ''},

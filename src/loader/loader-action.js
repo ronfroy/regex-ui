@@ -7,7 +7,8 @@ export const loadUrlValidationRegexAction = () => {
             { name: 'End of line', value: 'eol', active: true },
             { name: 'Global', value: 'g', active: false },
             { name: 'Case insensitive', value: 'i', active: false },
-            { name: 'Multi line', value: 'm', active: false }
+            { name: 'Multi line', value: 'm', active: false },
+            { name: 'Unicode', value: 'u', active: false }
         ],
         regex_rules: [
             { identifier: ++i, type: 'find', value: 'http', repeat_min: '1', repeat_max: '1'},
@@ -39,7 +40,8 @@ export const loadEmailValidationRegexAction = () => {
             { name: 'End of line', value: 'eol', active: true },
             { name: 'Global', value: 'g', active: false },
             { name: 'Case insensitive', value: 'i', active: false },
-            { name: 'Multi line', value: 'm', active: false }
+            { name: 'Multi line', value: 'm', active: false },
+            { name: 'Unicode', value: 'u', active: false }
         ],
         regex_rules: [
             { identifier: ++i, type: 'word', value: '09az', repeat_min: '2', repeat_max: '80'},

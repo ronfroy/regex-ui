@@ -11,15 +11,16 @@ class Option extends React.Component {
     render() {
         return (
             <div className="form-check form-check-inline">
-                <label className="form-check-label">
+                <label className="custom-control custom-radio">
                     <input
-                        className="form-check-input"
-                        type="checkbox"
+                        type="radio"
+                        className="custom-control-input"
                         defaultValue={ this.props.value }
                         checked={this.props.checked}
                         onChange={() => this.props.onChangeOption() }
                     />
-                    { this.props.name }
+                    <span className="custom-control-indicator"> </span>
+                    <span className="custom-control-description">{ this.props.name }</span>
                 </label>
             </div>
         );
