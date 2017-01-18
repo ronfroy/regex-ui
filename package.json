@@ -38,7 +38,7 @@
       "tests"
     ],
     "moduleDirectories": [
-      "src",
+      "",
       "node_modules"
     ]
   }

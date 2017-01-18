@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import NavLink from '../../src/app/navlink';
+import NavLink from 'src/app/navlink';
 
 describe('NavLink - Rendering', () => {
     const component = mount(<NavLink to='/' name='test' />);
