@@ -16,7 +16,7 @@ config.plugins.push(
     })
 );
 
-config.plugins.push(new webpack.optimize.UglifyJsPlugin());
+config.plugins.push(new webpack.optimize.UglifyJsPlugin({ comments: false }));
 config.plugins.push(new webpack.optimize.OccurenceOrderPlugin());
 config.plugins.push(new webpack.optimize.DedupePlugin());
 

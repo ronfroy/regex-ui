@@ -11,7 +11,7 @@ config.debug = true;
 config.devtool = 'eval-cheap-module-source-map';
 
 config.devServer = {
-    contentBase: path.join(__dirname, '..', 'build'),
+    contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true
 };
 
