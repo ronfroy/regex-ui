@@ -2,11 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 import NavLink from '../../src/app/navlink';
 
-describe('NavLink', () => {
+describe('NavLink - Rendering', () => {
+    const component = mount(<NavLink to='/' name='test' />);
+
     it('name must match', () => {
-        const component = mount(
-            <NavLink to='/' name='test' />
-        );
         expect(component.text()).toEqual('test');
     });
 });
