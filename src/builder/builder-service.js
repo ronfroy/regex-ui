@@ -53,7 +53,7 @@ const repeatBuilder = (regexVE, rule) => {
         return regexVE.add('*');
     }
 
-    // max limit
+    // min limit
     if('' === minString && '' !== maxString) {
         if(1 === max) {
             return regexVE.add('?');
@@ -62,7 +62,7 @@ const repeatBuilder = (regexVE, rule) => {
         return regexVE.add( '{0,' + max + '}');
     }
 
-    // min limit
+    // max limit
     if('' === maxString && '' !== minString) {
         switch(min) {
             case 0:
