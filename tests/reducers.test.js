@@ -30,81 +30,83 @@ describe('Initialization', () => {
 });
 
 describe('Builder', () => {
+    describe('Rule', () => {
+        describe('Add', () => {
+            const input = cloneState(initState);
+            const nbInputRule = input.builder.rules.length;
+            const action = {type: 'REGEX_BUILDER_ADD_RULE'};
+            const output = reducers(input, action);
 
-    describe('Add rule', () => {
-        const input = cloneState(initState);
-        const nbInputRule = input.builder.rules.length;
-        const action = {type: 'REGEX_BUILDER_ADD_RULE'};
-        const output = reducers(input, action);
-
-        it('have one more rule', () => {
-            expect(output.builder.rules.length).toEqual(nbInputRule + 1);
-        });
-    });
-
-    describe('Remove rule', () => {
-        const input = cloneState(initState);
-        input.builder.rules.push({identifier: 'foo'});
-        const nbInputRule = input.builder.rules.length;
-        const action = {type: 'REGEX_BUILDER_REMOVE_RULE', rule_identifier: 'foo'};
-        const output = reducers(input, action);
-
-        it('have one less rule', () => {
-            expect(output.builder.rules.length).toEqual(nbInputRule - 1);
+            it('have one more rule', () => {
+                expect(output.builder.rules.length).toEqual(nbInputRule + 1);
+            });
         });
 
-        it("doesn't contain removed rule", () => {
-            _.each(output.builder.rules, (rule) => {
-                expect(rule.identifier).not.toEqual('foo')
+        describe('Remove', () => {
+            const input = cloneState(initState);
+            input.builder.rules.push({identifier: 'foo'});
+            const nbInputRule = input.builder.rules.length;
+            const action = {type: 'REGEX_BUILDER_REMOVE_RULE', rule_identifier: 'foo'};
+            const output = reducers(input, action);
+
+            it('have one less rule', () => {
+                expect(output.builder.rules.length).toEqual(nbInputRule - 1);
+            });
+
+            it("doesn't contain removed rule", () => {
+                _.each(output.builder.rules, (rule) => {
+                    expect(rule.identifier).not.toEqual('foo')
+                });
+            });
+        });
+
+        describe('Change', () => {
+            const input = cloneState(initState);
+            input.builder.rules = [{identifier: 'foo', type: 'word', value: '', repeat_min: '', repeat_max: ''}];
+            const action = {
+                type: 'REGEX_BUILDER_CHANGE_RULE',
+                rule_identifier: 'foo',
+                rule_type: 'any',
+                rule_value: 'a',
+                rule_repeat_min: '1',
+                rule_repeat_max: '2'
+            };
+            const output = reducers(input, action);
+
+            it('must have type updated', () => {
+                expect(output.builder.rules[0].type).toEqual(action.rule_type);
+            });
+
+            it('must have value updated', () => {
+                expect(output.builder.rules[0].value).toEqual(action.rule_value);
+            });
+            it('must have minimum repeat updated', () => {
+                expect(output.builder.rules[0].repeat_min).toEqual(action.rule_repeat_min);
+            });
+            it('must have maximun repeat updated', () => {
+                expect(output.builder.rules[0].repeat_max).toEqual(action.rule_repeat_max);
             });
         });
     });
 
-    describe('Rule change', () => {
+    describe('Option', () => {
+        describe('Change', () => {
+            const action = {type: 'REGEX_BUILDER_OPTION_CHANGE', option_name: 'foo'};
 
-        const input = cloneState(initState);
-        input.builder.rules = [{identifier: 'foo', type: 'word', value: '', repeat_min: '', repeat_max: ''}];
-        const action = {
-            type: 'REGEX_BUILDER_CHANGE_RULE',
-            rule_identifier: 'foo',
-            rule_type: 'any',
-            rule_value: 'a',
-            rule_repeat_min: '1',
-            rule_repeat_max: '2'
-        };
-        const output = reducers(input, action);
+            it('must be activated', () => {
+                const input = cloneState(initState);
+                input.builder.options = [{name: 'foo', value: 'g', active: false}];
+                expect(reducers(input, action).builder.options[0].active).toBeTruthy();
+            });
 
-        it('must have type updated', () => {
-            expect(output.builder.rules[0].type).toEqual(action.rule_type);
-        });
-
-        it('must have value updated', () => {
-            expect(output.builder.rules[0].value).toEqual(action.rule_value);
-        });
-        it('must have minimum repeat updated', () => {
-            expect(output.builder.rules[0].repeat_min).toEqual(action.rule_repeat_min);
-        });
-        it('must have maximun repeat updated', () => {
-            expect(output.builder.rules[0].repeat_max).toEqual(action.rule_repeat_max);
+            it('must be unactivated', () => {
+                const input = cloneState(initState);
+                input.builder.options = [{name: 'foo', value: 'g', active: true}];
+                expect(reducers(input, action).builder.options[0].active).toBeFalsy();
+            });
         });
     });
 
-    describe('Option change', () => {
-        const action = {type: 'REGEX_BUILDER_OPTION_CHANGE', option_name: 'foo'};
-
-        it('must be activated', () => {
-            const input = cloneState(initState);
-            input.builder.options = [{name: 'foo', value: 'g', active: false}];
-            expect(reducers(input, action).builder.options[0].active).toBeTruthy();
-        });
-
-        it('must be unactivated', () => {
-            const input = cloneState(initState);
-            input.builder.options = [{name: 'foo', value: 'g', active: true}];
-            expect(reducers(input, action).builder.options[0].active).toBeFalsy();
-        });
-    });
-    
     describe('Reset', () => {
         const input = cloneState(initState);
         input.builder.rules.push({});
