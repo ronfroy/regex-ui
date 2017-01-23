@@ -62,7 +62,6 @@ export const loadEmailValidationRegexAction = () => {
             { identifier: _.uniqueId(), subject: 'name@Domain.com', must_match: true },
             { identifier: _.uniqueId(), subject: 'name@Domain.com', must_match: true },
             { identifier: _.uniqueId(), subject: 'name@domain.Com', must_match: true },
-        ],
-        next_identifier: ++i
+        ]
     }
 };

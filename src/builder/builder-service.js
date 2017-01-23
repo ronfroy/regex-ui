@@ -1,35 +1,36 @@
+import _ from 'lodash';
 var VerEx = require('verbal-expressions');
 
 const optionBuilder = (regexVE, options) => {
-    for (var i = 0, len = options.length; i < len; i++) {
-        var option = options[i];
 
-        if(option.active) {
-
-            if('sol' === option.value) {
-                regexVE.startOfLine();
-                continue;
-            }
-
-            if('eol' === option.value) {
-                regexVE.endOfLine();
-                continue;
-            }
-
-            regexVE.addModifier(option.value);
-        } else {
-            regexVE.removeModifier(option.value); // must remove default modifier
+    _.each(options, (option) => {
+        if(!option.active) {
+            // remove default modifiers
+            regexVE.removeModifier(option.value);
+            return;
         }
-    }
+
+        if('sol' === option.value) {
+            regexVE.startOfLine();
+            return;
+        }
+
+        if('eol' === option.value) {
+            regexVE.endOfLine();
+            return;
+        }
+
+        regexVE.addModifier(option.value);
+    });
 
     return regexVE;
 };
 
 const repeatBuilder = (regexVE, rule) => {
-    var minString = rule.repeat_min.replace(/\D/,'');
-    var maxString = rule.repeat_max.replace(/\D/,'');
-    var min = Number(minString);
-    var max = Number(maxString);
+    const minString = _.replace(rule.repeat_min, /\D/, '');
+    const maxString = _.replace(rule.repeat_max, /\D/, '');
+    const min = Number(minString);
+    const max = Number(maxString);
 
     // limit max and min
     if('' !== minString && '' !== maxString) {
@@ -80,12 +81,11 @@ const regexBuilder = (config) => {
 
     regexVE = optionBuilder(regexVE, config.options);
 
-    for (var i = 0, len = config.rules.length; i < len; i++) {
-        var rule = config.rules[i];
+    _.each(config.rules, (rule) => {
 
         if('0' === rule.repeat_min && '0' === rule.repeat_max) {
             // ignore rule if repeat 0-0
-            continue;
+            return;
         }
 
         switch(rule.type) {
@@ -122,7 +122,7 @@ const regexBuilder = (config) => {
         }
 
         regexVE = repeatBuilder(regexVE, rule);
-    }
+    });
 
     return regexVE;
 };

@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import regexBuilder from './builder/builder-service';
-import initialState from './state';
+import init from './state';
 
-const reducers = (state = initialState, action) => {
+const reducers = (state = init, action) => {
 
     if('REGEX_LOADER_LOAD' == action.type)
     {
@@ -13,8 +13,8 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_BUILDER_RESET' == action.type)
     {
-        state.builder.options = state.builder.options.map(function(option) {
-            return Object.assign({}, option, { 'active': false });
+        state.builder.options = _.map(state.builder.options, function(option) {
+            return _.assign({}, option, { 'active': false });
         });
 
         state.builder.rules = [];
@@ -22,9 +22,9 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_BUILDER_OPTION_CHANGE' == action.type)
     {
-        state.builder.options = state.builder.options.map(function(option) {
+        state.builder.options = _.map(state.builder.options, function(option) {
             if(option.name === action.option_name) {
-                return Object.assign({}, option, {
+                return _.assign({}, option, {
                     'active': !option.active
                 });
             }
@@ -36,14 +36,14 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_BUILDER_REMOVE_RULE' == action.type)
     {
-        state.builder.rules = state.builder.rules.filter(function(rule) {
+        state.builder.rules = _.filter(state.builder.rules, function(rule) {
             return rule.identifier !== action.rule_identifier;
         });
     }
 
     if('REGEX_BUILDER_ADD_RULE' == action.type)
     {
-        state.builder.rules = state.builder.rules.concat([{
+        state.builder.rules = _.concat(state.builder.rules, [{
             identifier: _.uniqueId(),
             type: 'find',
             value: '',
@@ -54,12 +54,12 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_BUILDER_CHANGE_RULE' == action.type)
     {
-        state.builder.rules = state.builder.rules.map(function(rule) {
+        state.builder.rules =_.map(state.builder.rules, function(rule) {
             var repeat_min = action.rule_repeat_min.replace(/\D/,'');
             var repeat_max = action.rule_repeat_max.replace(/\D/,'');
 
             if(rule.identifier === action.rule_identifier) {
-                return Object.assign({}, rule, {
+                return _.assign({}, rule, {
                     'type': action.rule_type,
                     'value': action.rule_value,
                     'repeat_min': repeat_min,
@@ -78,14 +78,14 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_TESTER_REMOVE_TEST' == action.type)
     {
-        state.tester.tests = state.tester.tests.filter(function(test) {
+        state.tester.tests = _.filter(state.tester.tests, function(test) {
             return test.identifier !== action.test_identifier;
         });
     }
 
     if('REGEX_TESTER_ADD_TEST' == action.type)
     {
-        state.tester.tests = state.tester.tests.concat([{
+        state.tester.tests = _.concat(state.tester.tests, [{
             identifier: _.uniqueId(),
             subject: '',
             must_match: true
@@ -94,9 +94,9 @@ const reducers = (state = initialState, action) => {
 
     if('REGEX_TESTER_CHANGE_TEST' == action.type)
     {
-        state.tester.tests = state.tester.tests.map(function(test) {
+        state.tester.tests = _.map(state.tester.tests, function(test) {
             if(test.identifier === action.test_identifier) {
-                return Object.assign({}, test, {
+                return _.assign({}, test, {
                     'subject': action.test_subject,
                     'must_match': action.test_must_match
                 });
@@ -108,13 +108,13 @@ const reducers = (state = initialState, action) => {
 
     const regex = regexBuilder(state.builder);
 
-    state.tester.tests = state.tester.tests.map(function(test) {
-        return Object.assign({}, test, {
+    state.tester.tests = _.map(state.tester.tests, function(test) {
+        return _.assign({}, test, {
             'pass': test.must_match === regex.test(test.subject)
         });
     });
 
-    return Object.assign({}, state, {
+    return _.assign({}, state, {
         'regex': regex.toString(),
     });
 };
