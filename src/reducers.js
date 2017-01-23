@@ -4,21 +4,9 @@ import init from './state';
 
 const reducers = (state = init, action) => {
 
-    if('REGEX_LOADER_LOAD' == action.type)
-    {
-        state.builder.options = action.regex_options;
-        state.builder.rules = action.regex_rules;
-        state.tester.tests = action.regex_tests;
-    }
-
-    if('REGEX_BUILDER_RESET' == action.type)
-    {
-        state.builder.options = _.map(state.builder.options, function(option) {
-            return _.assign({}, option, { 'active': false });
-        });
-
-        state.builder.rules = [];
-    }
+    /*
+     Builder
+    */
 
     if('REGEX_BUILDER_OPTION_CHANGE' == action.type)
     {
@@ -33,14 +21,6 @@ const reducers = (state = init, action) => {
         });
     }
 
-
-    if('REGEX_BUILDER_REMOVE_RULE' == action.type)
-    {
-        state.builder.rules = _.filter(state.builder.rules, function(rule) {
-            return rule.identifier !== action.rule_identifier;
-        });
-    }
-
     if('REGEX_BUILDER_ADD_RULE' == action.type)
     {
         state.builder.rules = _.concat(state.builder.rules, [{
@@ -52,11 +32,27 @@ const reducers = (state = init, action) => {
         }]);
     }
 
+    if('REGEX_BUILDER_REMOVE_RULE' == action.type)
+    {
+        state.builder.rules = _.filter(state.builder.rules, function(rule) {
+            return rule.identifier !== action.rule_identifier;
+        });
+    }
+
+    if('REGEX_BUILDER_RESET' == action.type)
+    {
+        state.builder.options = _.map(state.builder.options, function(option) {
+            return _.assign({}, option, { 'active': false });
+        });
+
+        state.builder.rules = [];
+    }
+
     if('REGEX_BUILDER_CHANGE_RULE' == action.type)
     {
         state.builder.rules =_.map(state.builder.rules, function(rule) {
-            var repeat_min = action.rule_repeat_min.replace(/\D/,'');
-            var repeat_max = action.rule_repeat_max.replace(/\D/,'');
+            var repeat_min = _.replace(action.rule_repeat_min, /\D/, '');
+            var repeat_max = _.replace(action.rule_repeat_max, /\D/, '');
 
             if(rule.identifier === action.rule_identifier) {
                 return _.assign({}, rule, {
@@ -70,6 +66,10 @@ const reducers = (state = init, action) => {
             return rule;
         });
     }
+
+    /*
+     Tester
+     */
 
     if('REGEX_TESTER_RESET' == action.type)
     {
@@ -105,6 +105,21 @@ const reducers = (state = init, action) => {
             return test;
         });
     }
+
+    /*
+      Loader
+     */
+
+    if('REGEX_LOADER_LOAD' == action.type)
+    {
+        state.builder.options = action.regex_options;
+        state.builder.rules = action.regex_rules;
+        state.tester.tests = action.regex_tests;
+    }
+
+    /*
+     Global
+     */
 
     const regex = regexBuilder(state.builder);
 
