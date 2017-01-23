@@ -1,4 +1,5 @@
-var i = 0;
+import _ from 'lodash';
+
 const State = {
     regex: '',
     navigation: [
@@ -16,7 +17,7 @@ const State = {
             { name: 'Unicode', value: 'u', active: false }
         ],
         rules: [
-            { identifier: ++i, type: 'find', value: '', repeat_min: '', repeat_max: ''},
+            { identifier: _.uniqueId(), type: 'find', value: '', repeat_min: '', repeat_max: ''},
         ],
         rule_types: [
             { value: 'any', name: 'Any of', valuable: true, repeatable: true },
@@ -33,10 +34,9 @@ const State = {
     },
     tester: {
         tests: [
-            { identifier: ++i, subject: '', must_match: true, pass: true },
+            { identifier: _.uniqueId(), subject: '', must_match: true, pass: true },
         ]
     },
-    next_identifier: ++i,
 };
 
 export default State;

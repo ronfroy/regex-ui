@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import regexBuilder from './builder/builder-service';
 import initialState from './state';
 
@@ -8,10 +9,6 @@ const reducers = (state = initialState, action) => {
         state.builder.options = action.regex_options;
         state.builder.rules = action.regex_rules;
         state.tester.tests = action.regex_tests;
-
-        state = Object.assign({}, state, {
-            'next_identifier': ++state.next_identifier
-        });
     }
 
     if('REGEX_BUILDER_RESET' == action.type)
@@ -47,7 +44,7 @@ const reducers = (state = initialState, action) => {
     if('REGEX_BUILDER_ADD_RULE' == action.type)
     {
         state.builder.rules = state.builder.rules.concat([{
-            identifier: ++state.next_identifier,
+            identifier: _.uniqueId(),
             type: 'find',
             value: '',
             repeat_min: '',
@@ -89,7 +86,7 @@ const reducers = (state = initialState, action) => {
     if('REGEX_TESTER_ADD_TEST' == action.type)
     {
         state.tester.tests = state.tester.tests.concat([{
-            identifier: ++state.next_identifier,
+            identifier: _.uniqueId(),
             subject: '',
             must_match: true
         }]);

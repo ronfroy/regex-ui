@@ -15,10 +15,6 @@ describe('Reducers - Initialization', () => {
         expect(typeof output.regex).toEqual('string');
     });
 
-    it('must have next_identifier as number', () => {
-        expect(typeof output.next_identifier).toEqual('number');
-    });
-
     it('must have navigation as array', () => {
         expect(output.navigation instanceof Array).toBeTruthy();
     });
@@ -29,23 +25,6 @@ describe('Reducers - Initialization', () => {
 
     it('must have tester as object', () => {
         expect(output.tester instanceof Object).toBeTruthy();
-    });
-});
-
-describe('Reducers - Builder - Reset', () => {
-    const input = cloneState(initState);
-    input.builder.rules.push({});
-    const action = {'type': 'REGEX_BUILDER_RESET'};
-    const output = reducers(input, action);
-
-    it('have no rules', () => {
-        expect(output.builder.rules.length).toEqual(0);
-    });
-
-    it('have no active option', () => {
-        for (var i = 0, len = output.builder.options; i < len; i++) {
-            expect(output.builder.options[i].active).toBeFalsy();
-        }
     });
 });
 
@@ -75,6 +54,23 @@ describe('Reducers - Builder - Remove rule', () => {
     it("doesn't contain removed rule", () => {
         for (var i = 0, len = output.builder.rules.length; i < len; i++) {
             expect(output.builder.rules[i].identifier).not.toEqual(identifier);
+        }
+    });
+});
+
+describe('Reducers - Builder - Reset', () => {
+    const input = cloneState(initState);
+    input.builder.rules.push({});
+    const action = {'type': 'REGEX_BUILDER_RESET'};
+    const output = reducers(input, action);
+
+    it('have no rules', () => {
+        expect(output.builder.rules.length).toEqual(0);
+    });
+
+    it('have no active option', () => {
+        for (var i = 0, len = output.builder.options; i < len; i++) {
+            expect(output.builder.options[i].active).toBeFalsy();
         }
     });
 });
