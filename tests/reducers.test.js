@@ -104,8 +104,7 @@ describe('Builder', () => {
             expect(reducers(input, action).builder.options[0].active).toBeFalsy();
         });
     });
-
-
+    
     describe('Reset', () => {
         const input = cloneState(initState);
         input.builder.rules.push({});
@@ -122,10 +121,4 @@ describe('Builder', () => {
             });
         });
     });
-});
-describe('Tester', () => {
-    // TODO
-});
-describe('Loader', () => {
-    // TODO
 });
