@@ -124,3 +124,36 @@ describe('Builder', () => {
         });
     });
 });
+
+describe('Tester', () => {
+    describe('Test', () => {
+        describe('Add', () => {
+            const input = cloneState(initState);
+            const nbInputTests = input.tester.tests.length;
+            const action = {type: 'REGEX_TESTER_ADD_TEST'};
+            const output = reducers(input, action);
+
+            it('have one more test', () => {
+                expect(output.tester.tests.length).toEqual(nbInputTests + 1);
+            });
+        });
+
+        describe('Remove', () => {
+            const input = cloneState(initState);
+            input.tester.tests.push({identifier: 'foo'});
+            const nbInputTests = input.tester.tests.length;
+            const action = {type: 'REGEX_TESTER_REMOVE_TEST', test_identifier: 'foo'};
+            const output = reducers(input, action);
+
+            it('have one less test', () => {
+                expect(output.tester.tests.length).toEqual(nbInputTests - 1);
+            });
+
+            it("doesn't contain removed test", () => {
+                _.each(output.tester.tests, (test) => {
+                    expect(test.identifier).not.toEqual('foo')
+                });
+            });
+        });
+    });
+});

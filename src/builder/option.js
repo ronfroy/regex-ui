@@ -3,6 +3,7 @@ import React from 'react';
 class Option extends React.Component {
 
     static propTypes = {
+        name: React.PropTypes.string.isRequired,
         value: React.PropTypes.string.isRequired,
         checked: React.PropTypes.bool.isRequired,
         onChangeOption: React.PropTypes.func.isRequired

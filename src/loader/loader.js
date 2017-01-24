@@ -2,6 +2,11 @@ import React from 'react';
 
 class Loader extends React.Component {
 
+    static propTypes = {
+        onLoadUrlValidation: React.PropTypes.func.isRequired,
+        onLoadEmailValidation: React.PropTypes.func.isRequired,
+    }
+
     render() {
         return (
             <div>
