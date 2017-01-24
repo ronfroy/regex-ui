@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Builder from './builder';
-import {addRuleAction, resetAction} from './builder-actions';
+import {addRuleAction, resetAction, changeOptionAction} from './builder-actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onReset: () => {
             dispatch(resetAction())
+        },
+        onOptionChange: (optionName) => {
+            dispatch(changeOptionAction(optionName))
         },
     }
 };

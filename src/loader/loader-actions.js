@@ -1,9 +1,11 @@
 import _ from 'lodash';
 
+export const REGEX_LOADER_LOAD = 'REGEX_LOADER_LOAD';
+
 export const loadUrlValidationRegexAction = () => {
     var i = 0;
     return {
-        type: 'REGEX_LOADER_LOAD',
+        type: REGEX_LOADER_LOAD,
         regex_options: [
             { name: 'Start of line', value: 'sol', active: true },
             { name: 'End of line', value: 'eol', active: true },
@@ -35,7 +37,7 @@ export const loadUrlValidationRegexAction = () => {
 export const loadEmailValidationRegexAction = () => {
     var i = 0;
     return {
-        type: 'REGEX_LOADER_LOAD',
+        type: REGEX_LOADER_LOAD,
         regex_options: [
             { name: 'Start of line', value: 'sol', active: true },
             { name: 'End of line', value: 'eol', active: true },

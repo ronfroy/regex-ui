@@ -3,7 +3,7 @@ import React from 'react';
 class Test extends React.Component {
 
     static propTypes = {
-        identifier: React.PropTypes.number.isRequired,
+        identifier: React.PropTypes.string.isRequired,
         subject: React.PropTypes.string.isRequired,
         must_match: React.PropTypes.bool.isRequired,
         pass: React.PropTypes.bool,

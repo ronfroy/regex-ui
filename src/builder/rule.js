@@ -3,7 +3,7 @@ import React from 'react';
 class Rule extends React.Component {
 
     static propTypes = {
-        identifier: React.PropTypes.number.isRequired,
+        identifier: React.PropTypes.string.isRequired,
         type: React.PropTypes.string.isRequired,
         value: React.PropTypes.string.isRequired,
         types: React.PropTypes.array.isRequired,

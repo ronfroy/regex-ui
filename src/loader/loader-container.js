@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Loader from './loader';
-import {loadUrlValidationRegexAction, loadEmailValidationRegexAction} from  './loader-action'
+import {loadUrlValidationRegexAction, loadEmailValidationRegexAction} from  './loader-actions'
 
 const mapStateToProps = (state) => {
     return {

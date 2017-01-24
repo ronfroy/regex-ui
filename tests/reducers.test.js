@@ -156,4 +156,15 @@ describe('Tester', () => {
             });
         });
     });
+
+    describe('Reset', () => {
+        const input = cloneState(initState);
+        input.tester.tests.push({});
+        const action = {type: 'REGEX_TESTER_RESET'};
+        const output = reducers(input, action);
+
+        it('have no tests', () => {
+            expect(output.tester.tests.length).toEqual(0);
+        });
+    });
 });

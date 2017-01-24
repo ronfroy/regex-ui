@@ -1,6 +1,6 @@
 import React from 'react';
 import Rule from './rule-container';
-import Option from './option-container';
+import Option from './option';
 
 class Builder extends React.Component {
 
@@ -8,7 +8,8 @@ class Builder extends React.Component {
         options: React.PropTypes.array.isRequired,
         rules: React.PropTypes.array.isRequired,
         onAdd: React.PropTypes.func.isRequired,
-        onReset: React.PropTypes.func.isRequired
+        onReset: React.PropTypes.func.isRequired,
+        onOptionChange: React.PropTypes.func.isRequired,
     }
 
     render() {
@@ -17,7 +18,13 @@ class Builder extends React.Component {
                 <h2>Regex Builder</h2>
 
                 { this.props.options.map((option) => (
-                    <Option key={option.name} name={option.name} value={option.value} checked={option.active}/>
+                    <Option
+                        key={option.name}
+                        name={option.name}
+                        value={option.value}
+                        checked={option.active}
+                        onChangeOption={this.props.onOptionChange}
+                    />
                 ))}
 
                 <table className="table">

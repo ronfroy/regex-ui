@@ -18,7 +18,7 @@ class Option extends React.Component {
                         className="custom-control-input"
                         defaultValue={ this.props.value }
                         checked={this.props.checked}
-                        onChange={() => this.props.onChangeOption() }
+                        onChange={() => this.props.onChangeOption(this.props.name) }
                     />
                     <span className="custom-control-indicator"> </span>
                     <span className="custom-control-description">{ this.props.name }</span>
