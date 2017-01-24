@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Loader extends React.Component {
 
@@ -18,8 +18,8 @@ class Loader extends React.Component {
                     Load Email validation
                 </button>
             </div>
-        );
+        )
     }
 }
 
-export default Loader;
+export default Loader

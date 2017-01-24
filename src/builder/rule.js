@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Rule extends React.Component {
 
@@ -17,33 +17,33 @@ class Rule extends React.Component {
     }
 
     constructor(props) {
-        super(props);
+        super(props)
 
-        this.isValuable = this.isValuable.bind(this);
-        this.isRepeatable = this.isRepeatable.bind(this);
+        this.isValuable = this.isValuable.bind(this)
+        this.isRepeatable = this.isRepeatable.bind(this)
     }
 
     isValuable(type) {
         for (var i = 0, len = this.props.types.length; i < len; i++) {
             if(this.props.types[i].value === type) {
-                return this.props.types[i].valuable;
+                return this.props.types[i].valuable
             }
         }
-        return false;
+        return false
     }
 
     isRepeatable(type) {
         for (var i = 0, len = this.props.types.length; i < len; i++) {
             if(this.props.types[i].value === type) {
-                return this.props.types[i].repeatable;
+                return this.props.types[i].repeatable
             }
         }
-        return false;
+        return false
     }
 
     render() {
-        const valuable = this.isValuable(this.props.type);
-        const repeatable = this.isRepeatable(this.props.type);
+        const valuable = this.isValuable(this.props.type)
+        const repeatable = this.isRepeatable(this.props.type)
         return (
             <tr scope="row">
                 <td>
@@ -101,8 +101,8 @@ class Rule extends React.Component {
                     </button>
                 </td>
             </tr>
-        );
+        )
     }
 }
 
-export default Rule;
+export default Rule

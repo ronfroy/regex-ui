@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import Builder from './builder';
-import {addRuleAction, resetAction, changeOptionAction} from './builder-actions';
+import { connect } from 'react-redux'
+import Builder from './builder'
+import {addRuleAction, resetAction, changeOptionAction} from './builder-actions'
 
 const mapStateToProps = (state) => {
     return {
         options: state.builder.options,
         rules: state.builder.rules
     }
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -21,11 +21,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(changeOptionAction(optionName))
         },
     }
-};
+}
 
 const Container = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Builder);
+)(Builder)
 
-export default Container;
+export default Container

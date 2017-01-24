@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
-import Test from './test';
-import {changeTestAction, removeTestAction} from './test-actions';
+import { connect } from 'react-redux'
+import Test from './test'
+import {changeTestAction, removeTestAction} from './test-actions'
 
 const mapStateToProps = (state) => {
     return {
     }
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -19,11 +19,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(changeTestAction(ownProps.identifier, ownProps.subject, !ownProps.must_match))
         },
     }
-};
+}
 
 const Container = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Test);
+)(Test)
 
-export default Container;
+export default Container

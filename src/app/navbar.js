@@ -1,5 +1,5 @@
-import React from 'react';
-import NavLink from './navlink';
+import React from 'react'
+import NavLink from './navlink'
 
 class NavBar extends React.Component {
 
@@ -7,7 +7,7 @@ class NavBar extends React.Component {
         title: React.PropTypes.string.isRequired,
         regex: React.PropTypes.string.isRequired,
         navigation: React.PropTypes.array.isRequired
-    };
+    }
 
     render() {
         return (
@@ -40,8 +40,8 @@ class NavBar extends React.Component {
                        value={this.props.regex}
                 />
             </nav>
-        );
+        )
     }
 }
 
-export default NavBar;
+export default NavBar

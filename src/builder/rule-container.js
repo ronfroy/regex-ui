@@ -1,12 +1,12 @@
-import { connect } from 'react-redux';
-import Rule from './rule';
-import {removeRuleAction, changeRuleAction} from './rule-actions';
+import { connect } from 'react-redux'
+import Rule from './rule'
+import {removeRuleAction, changeRuleAction} from './rule-actions'
 
 const mapStateToProps = (state) => {
     return {
         types: state.builder.rule_types
     }
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -50,11 +50,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             ))
         },
     }
-};
+}
 
 const Container = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Rule);
+)(Rule)
 
-export default Container;
+export default Container

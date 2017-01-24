@@ -6,6 +6,6 @@ node_js:
   - "5"
 
 script:
-  - npm run-script build
-  - npm run-script test
-  - npm run-script lint
+  - npm script build
+  - npm script test
+  - npm script lint

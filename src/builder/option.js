@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 class Option extends React.Component {
 
@@ -24,8 +24,8 @@ class Option extends React.Component {
                     <span className="custom-control-description">{ this.props.name }</span>
                 </label>
             </div>
-        );
+        )
     }
 }
 
-export default Option;
+export default Option

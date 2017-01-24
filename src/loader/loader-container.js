@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import Loader from './loader';
+import { connect } from 'react-redux'
+import Loader from './loader'
 import {loadUrlValidationRegexAction, loadEmailValidationRegexAction} from  './loader-actions'
 
 const mapStateToProps = (state) => {
@@ -7,22 +7,22 @@ const mapStateToProps = (state) => {
         options: state.regex.options,
         rules: state.regex.rules
     }
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onLoadUrlValidation: () => {
-            dispatch(loadUrlValidationRegexAction());
+            dispatch(loadUrlValidationRegexAction())
         },
         onLoadEmailValidation: () => {
-            dispatch(loadEmailValidationRegexAction());
+            dispatch(loadEmailValidationRegexAction())
         },
     }
-};
+}
 
 const Container = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Loader);
+)(Loader)
 
-export default Container;
+export default Container

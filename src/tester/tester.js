@@ -1,5 +1,5 @@
-import React from 'react';
-import Test from './test-container';
+import React from 'react'
+import Test from './test-container'
 
 class Tester extends React.Component {
 
@@ -48,8 +48,8 @@ class Tester extends React.Component {
                     </button>) : ''
                 }
             </div>
-        );
+        )
     }
 }
 
-export default Tester;
+export default Tester

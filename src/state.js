@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
 const State = {
     regex: '',
@@ -37,6 +37,6 @@ const State = {
             { identifier: _.uniqueId(), subject: '', must_match: true, pass: true },
         ]
     },
-};
+}
 
-export default State;
+export default State

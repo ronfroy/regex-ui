@@ -1,12 +1,12 @@
-import React from 'react';
-import {Link} from 'react-router';
+import React from 'react'
+import {Link} from 'react-router'
 
 class NavLink extends React.Component {
 
     static propTypes = {
         to: React.PropTypes.string.isRequired,
         name: React.PropTypes.string.isRequired
-    };
+    }
 
     render() {
         return (
@@ -17,8 +17,8 @@ class NavLink extends React.Component {
                     </Link>
                 </li>
             </ul>
-        );
+        )
     }
 }
 
-export default NavLink;
+export default NavLink

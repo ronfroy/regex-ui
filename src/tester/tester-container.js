@@ -1,12 +1,12 @@
-import { connect } from 'react-redux';
-import Tester from './tester';
-import {addTestAction, resetAction} from './tester-actions';
+import { connect } from 'react-redux'
+import Tester from './tester'
+import {addTestAction, resetAction} from './tester-actions'
 
 const mapStateToProps = (state) => {
     return {
         tests: state.tester.tests,
     }
-};
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
@@ -17,11 +17,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(resetAction())
         },
     }
-};
+}
 
 const Container = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Tester);
+)(Tester)
 
-export default Container;
+export default Container

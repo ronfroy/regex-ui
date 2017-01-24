@@ -1,5 +1,5 @@
-import React from 'react';
-import NavBar from './navbar';
+import React from 'react'
+import NavBar from './navbar'
 
 class Layout extends React.Component {
 
@@ -7,7 +7,7 @@ class Layout extends React.Component {
         regex: React.PropTypes.string.isRequired,
         navigation: React.PropTypes.array.isRequired,
         children: React.PropTypes.object
-    };
+    }
 
     render() {
         return (
@@ -22,8 +22,8 @@ class Layout extends React.Component {
                     {this.props.children}
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default Layout;
+export default Layout

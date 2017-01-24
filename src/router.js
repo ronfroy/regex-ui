@@ -1,10 +1,10 @@
-import React from 'react';
-import {Router, Route, IndexRedirect, browserHistory } from 'react-router';
+import React from 'react'
+import {Router, Route, IndexRedirect, browserHistory } from 'react-router'
 
-import Layout from './app/layout-container';
-import Builder from './builder/builder-container';
-import Loader from './loader/loader-container';
-import Tester from './tester/tester-container';
+import Layout from './app/layout-container'
+import Builder from './builder/builder-container'
+import Loader from './loader/loader-container'
+import Tester from './tester/tester-container'
 
 class AppRouter extends React.Component {
     render() {
@@ -17,8 +17,8 @@ class AppRouter extends React.Component {
                     <Route component={Loader} path="loader" />
                 </Route>
             </Router>
-        );
+        )
     }
 }
 
-export default AppRouter;
+export default AppRouter

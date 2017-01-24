@@ -1,9 +1,9 @@
-import _ from 'lodash';
+import _ from 'lodash'
 
-export const REGEX_LOADER_LOAD = 'REGEX_LOADER_LOAD';
+export const REGEX_LOADER_LOAD = 'REGEX_LOADER_LOAD'
 
 export const loadUrlValidationRegexAction = () => {
-    var i = 0;
+    var i = 0
     return {
         type: REGEX_LOADER_LOAD,
         regex_options: [
@@ -32,10 +32,10 @@ export const loadUrlValidationRegexAction = () => {
             { identifier: _.uniqueId(), subject: 'http://.domain.com', must_match: false}
         ],
     }
-};
+}
 
 export const loadEmailValidationRegexAction = () => {
-    var i = 0;
+    var i = 0
     return {
         type: REGEX_LOADER_LOAD,
         regex_options: [
@@ -66,4 +66,4 @@ export const loadEmailValidationRegexAction = () => {
             { identifier: _.uniqueId(), subject: 'name@domain.Com', must_match: true },
         ]
     }
-};
+}

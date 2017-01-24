@@ -1,6 +1,6 @@
-import React from 'react';
-import Rule from './rule-container';
-import Option from './option';
+import React from 'react'
+import Rule from './rule-container'
+import Option from './option'
 
 class Builder extends React.Component {
 
@@ -68,8 +68,8 @@ class Builder extends React.Component {
                 }
 
             </div>
-        );
+        )
     }
 }
 
-export default Builder;
+export default Builder
