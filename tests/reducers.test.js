@@ -1,5 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
+import {REGEX_BUILDER_ADD_RULE, REGEX_BUILDER_OPTION_CHANGE, REGEX_BUILDER_RESET} from 'src/builder/builder-actions'
+import {REGEX_BUILDER_CHANGE_RULE, REGEX_BUILDER_REMOVE_RULE} from 'src/builder/rule-actions'
+import {REGEX_TESTER_ADD_TEST, REGEX_TESTER_RESET} from 'src/tester/tester-actions'
+import {REGEX_TESTER_CHANGE_TEST, REGEX_TESTER_REMOVE_TEST} from 'src/tester/test-actions'
 import reducers from 'src/reducers';
 import initState from 'src/state';
 
@@ -34,7 +38,7 @@ describe('Builder', () => {
         describe('Add', () => {
             const input = cloneState(initState);
             const nbInputRule = input.builder.rules.length;
-            const action = {type: 'REGEX_BUILDER_ADD_RULE'};
+            const action = {type: REGEX_BUILDER_ADD_RULE};
             const output = reducers(input, action);
 
             it('have one more rule', () => {
@@ -46,7 +50,7 @@ describe('Builder', () => {
             const input = cloneState(initState);
             input.builder.rules.push({identifier: 'foo'});
             const nbInputRule = input.builder.rules.length;
-            const action = {type: 'REGEX_BUILDER_REMOVE_RULE', rule_identifier: 'foo'};
+            const action = {type: REGEX_BUILDER_REMOVE_RULE, rule_identifier: 'foo'};
             const output = reducers(input, action);
 
             it('have one less rule', () => {
@@ -64,7 +68,7 @@ describe('Builder', () => {
             const input = cloneState(initState);
             input.builder.rules = [{identifier: 'foo', type: 'word', value: '', repeat_min: '', repeat_max: ''}];
             const action = {
-                type: 'REGEX_BUILDER_CHANGE_RULE',
+                type: REGEX_BUILDER_CHANGE_RULE,
                 rule_identifier: 'foo',
                 rule_type: 'any',
                 rule_value: 'a',
@@ -80,9 +84,11 @@ describe('Builder', () => {
             it('must have value updated', () => {
                 expect(output.builder.rules[0].value).toEqual(action.rule_value);
             });
+
             it('must have minimum repeat updated', () => {
                 expect(output.builder.rules[0].repeat_min).toEqual(action.rule_repeat_min);
             });
+
             it('must have maximun repeat updated', () => {
                 expect(output.builder.rules[0].repeat_max).toEqual(action.rule_repeat_max);
             });
@@ -91,7 +97,7 @@ describe('Builder', () => {
 
     describe('Option', () => {
         describe('Change', () => {
-            const action = {type: 'REGEX_BUILDER_OPTION_CHANGE', option_name: 'foo'};
+            const action = {type: REGEX_BUILDER_OPTION_CHANGE, option_name: 'foo'};
 
             it('must be activated', () => {
                 const input = cloneState(initState);
@@ -110,7 +116,7 @@ describe('Builder', () => {
     describe('Reset', () => {
         const input = cloneState(initState);
         input.builder.rules.push({});
-        const action = {type: 'REGEX_BUILDER_RESET'};
+        const action = {type: REGEX_BUILDER_RESET};
         const output = reducers(input, action);
 
         it('have no rules', () => {
@@ -130,7 +136,7 @@ describe('Tester', () => {
         describe('Add', () => {
             const input = cloneState(initState);
             const nbInputTests = input.tester.tests.length;
-            const action = {type: 'REGEX_TESTER_ADD_TEST'};
+            const action = {type: REGEX_TESTER_ADD_TEST};
             const output = reducers(input, action);
 
             it('have one more test', () => {
@@ -142,7 +148,7 @@ describe('Tester', () => {
             const input = cloneState(initState);
             input.tester.tests.push({identifier: 'foo'});
             const nbInputTests = input.tester.tests.length;
-            const action = {type: 'REGEX_TESTER_REMOVE_TEST', test_identifier: 'foo'};
+            const action = {type: REGEX_TESTER_REMOVE_TEST, test_identifier: 'foo'};
             const output = reducers(input, action);
 
             it('have one less test', () => {
@@ -155,12 +161,34 @@ describe('Tester', () => {
                 });
             });
         });
+
+        describe('Change', () => {
+            const input = cloneState(initState);
+            input.tester.tests = [{ identifier: 'foo', subject: '123', must_match: false }];
+
+            const action = {
+                type: REGEX_TESTER_CHANGE_TEST,
+                test_identifier: 'foo',
+                test_subject: '456',
+                test_must_match: true
+            };
+
+            const output = reducers(input, action);
+
+            it('must have subject updated', () => {
+                expect(output.tester.tests[0].subject).toEqual(action.test_subject);
+            });
+
+            it('must have match updated', () => {
+                expect(output.tester.tests[0].must_match).toEqual(action.test_must_match);
+            });
+        });
     });
 
     describe('Reset', () => {
         const input = cloneState(initState);
         input.tester.tests.push({});
-        const action = {type: 'REGEX_TESTER_RESET'};
+        const action = {type: REGEX_TESTER_RESET};
         const output = reducers(input, action);
 
         it('have no tests', () => {
