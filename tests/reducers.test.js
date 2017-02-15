@@ -201,8 +201,11 @@ describe('Loader', () => {
     describe('Url validation', () => {
         const output = reducers(undefined, loadUrlValidationRegexAction)
 
-        it('must have options', () => {
+        it('must have valid options', () => {
             expect(output.builder.options.length).toEqual(initState.builder.options.length)
+            _.each(output.builder.options, (option, i) => {
+                expect(_.assign({}, option, initState.builder.options[i]).length).toEqual(initState.builder.options[i].length)
+            })
         })
 
         it('must have rules', () => {
@@ -213,8 +216,11 @@ describe('Loader', () => {
     describe('Email validation', () => {
         const output = reducers(undefined, loadEmailValidationRegexAction)
 
-        it('must have options', () => {
+        it('must have valid options', () => {
             expect(output.builder.options.length).toEqual(initState.builder.options.length)
+            _.each(output.builder.options, (option, i) => {
+                expect(_.assign({}, option, initState.builder.options[i]).length).toEqual(initState.builder.options[i].length)
+            })
         })
 
         it('must have rules', () => {
